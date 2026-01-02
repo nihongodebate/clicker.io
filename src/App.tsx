@@ -128,7 +128,6 @@ export default function App() {
         const snap = await getDoc(roomRef);
         const data = snap.data();
 
-        // ★修正ポイント: 古い部屋でパスワード未設定の場合は、今回入力したパスワードを設定してあげる
         if (data && !data.adminPassword) {
              try {
                  await updateDoc(roomRef, { adminPassword: teacherPassword });
@@ -140,7 +139,6 @@ export default function App() {
              return;
         }
 
-        // 通常のパスワードチェック
         if (snap.exists() && data.adminPassword === teacherPassword) {
             handleRoleSelect('teacher');
             setShowTeacherAuth(false);
@@ -197,7 +195,7 @@ export default function App() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-400">
+      <div className="min-h-[100dvh] flex items-center justify-center bg-slate-50 text-slate-400">
         <div className="flex flex-col items-center">
           <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
           <p className="text-sm font-medium tracking-wider animate-pulse">SYSTEM LOADING</p>
@@ -211,7 +209,7 @@ export default function App() {
   // Teacher Auth Modal
   if (showTeacherAuth) {
       return (
-        <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-center p-6">
+        <div className="min-h-[100dvh] bg-slate-100 flex flex-col items-center justify-center p-6">
             <div className="bg-white p-8 rounded-3xl shadow-xl w-full max-w-sm border border-slate-200">
                 <div className="text-center mb-6">
                     <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -272,7 +270,7 @@ export default function App() {
   // Guide / Help Screen
   if (step === 'guide') {
     return (
-      <div className="min-h-screen bg-slate-50 flex flex-col items-center p-6 overflow-y-auto">
+      <div className="min-h-[100dvh] bg-slate-50 flex flex-col items-center p-6 overflow-y-auto">
         <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
           
           {/* Header */}
@@ -323,11 +321,11 @@ export default function App() {
                 <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-600 leading-relaxed bg-slate-50 p-4 rounded-xl">
                   <div>
                     <span className="block font-bold text-xs text-indigo-500 mb-1">JAPANESE</span>
-                    「Student」を選び、ニックネームを入力して参加します。先生が出題したら、A〜Eの選択肢から投票します。
+                    「Student」を選び、ニックネームを入力して参加します。先生が出題したら、<span className="font-bold text-indigo-600">1〜5</span>の選択肢から投票します。
                   </div>
                   <div className="md:border-l border-slate-200 md:pl-4 border-t md:border-t-0 pt-3 md:pt-0">
                     <span className="block font-bold text-xs text-indigo-500 mb-1">KOREAN</span>
-                    'Student'を選択し、ニックネームを入力して参加します。先生が問題を出題したら、A〜Eの選択肢から投票してください。
+                    'Student'を選択し、ニックネームを入力して参加します。先生が問題を出題したら、<span className="font-bold text-indigo-600">1~5</span>の選択肢から投票してください。
                   </div>
                 </div>
               </div>
@@ -375,7 +373,7 @@ export default function App() {
   // Lobby Screen
   if (step === 'lobby') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
+      <div className="min-h-[100dvh] bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
         <div className="bg-white/80 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl w-full max-w-md border border-white/50">
           <div className="text-center mb-10 relative">
             <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight mb-2">Clicker<span className="text-indigo-600">.io</span></h1>
@@ -436,7 +434,7 @@ export default function App() {
   // Nickname Screen
   if (step === 'nickname') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
+      <div className="min-h-[100dvh] bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
         <div className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-2xl w-full max-w-md border border-white/50 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-purple-500" />
           
@@ -657,7 +655,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
   };
 
   const stats = useMemo(() => {
-    const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+    const counts = { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0 };
     let total = 0;
     if (roomData && roomData.responses) {
       Object.values(roomData.responses).forEach(r => {
@@ -671,14 +669,14 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
   }, [roomData]);
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-400">
+    <div className="min-h-[100dvh] flex items-center justify-center bg-slate-50 text-slate-400">
       <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 
   if (role === 'student' && !roomData) {
     return (
-      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
+      <div className="min-h-[100dvh] bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
         <div className="bg-white p-8 rounded-3xl shadow-xl max-w-sm w-full">
           <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
             <School className="w-8 h-8 text-slate-400" />
@@ -697,7 +695,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
   if (role === 'teacher' && !roomData) {
      return (
-       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
+       <div className="min-h-[100dvh] bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
          <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mb-4"></div>
          <h2 className="text-lg font-bold text-slate-700">Creating Room...</h2>
        </div>
@@ -714,7 +712,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
   const gradientClass = isTeacher ? 'from-teal-600 to-emerald-600' : 'from-indigo-600 to-purple-600';
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-800">
+    <div className="min-h-[100dvh] bg-slate-50 flex flex-col font-sans text-slate-800">
       
       {/* --- CONFIRMATION MODALS --- */}
       {showNextConfirm && (
@@ -884,14 +882,14 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
         {/* --- STUDENT INPUT --- */}
         {!isTeacher && roomData.status === 'voting' && (
-          <div className="max-w-md mx-auto py-4">
+          <div className="w-full max-w-md mx-auto py-4">
              <div className="text-center mb-8">
                <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold mb-2 border border-indigo-100">QUESTION {currentQ}</span>
                <h2 className="text-3xl font-bold text-slate-800">Cast Your Vote</h2>
              </div>
              
              <div className="space-y-3">
-               {['A', 'B', 'C', 'D', 'E'].map((option) => {
+               {['1', '2', '3', '4', '5'].map((option) => {
                  const isSelected = myVote === option;
                  return (
                    <button
@@ -954,7 +952,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
             </div>
             
             <div className="h-64 md:h-80 flex items-end justify-between gap-2 md:gap-6 px-2 pb-2">
-              {['A', 'B', 'C', 'D', 'E'].map((opt, index) => {
+              {['1', '2', '3', '4', '5'].map((opt, index) => {
                 const count = stats.counts[opt];
                 const percentage = stats.total > 0 ? (count / stats.total) * 100 : 0;
                 
