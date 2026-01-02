@@ -41,7 +41,7 @@ import {
 } from 'lucide-react';
 
 // =================================================================
-// 【重要】GitHubで編集する際も、ここをご自身のキーに書き換えてください！
+// 【重要】ここでプレビューする場合も、キーの書き換えが必要です！
 // =================================================================
 
 const firebaseConfig = {
@@ -207,8 +207,8 @@ export default function App() {
   // Teacher Auth Modal
   if (showTeacherAuth) {
       return (
-        <div className="min-h-[100dvh] w-full bg-slate-100 flex flex-col items-center justify-center p-0 md:p-6">
-            <div className="bg-white w-full h-full md:h-auto md:max-w-sm p-8 md:rounded-3xl md:shadow-xl md:border md:border-slate-200 flex flex-col justify-center mx-auto">
+        <div className="min-h-[100dvh] w-full bg-slate-100 flex flex-col items-center justify-center p-6">
+            <div className="bg-white w-full max-w-sm p-8 rounded-3xl shadow-xl border border-slate-200">
                 <div className="text-center mb-6">
                     <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Lock className="w-6 h-6" />
@@ -268,11 +268,10 @@ export default function App() {
   // Guide / Help Screen
   if (step === 'guide') {
     return (
-      <div className="min-h-[100dvh] w-full bg-slate-50 flex flex-col items-center p-0 md:p-6 overflow-y-auto">
-        <div className="w-full md:max-w-2xl min-h-[100dvh] md:min-h-0 bg-white md:rounded-3xl md:shadow-xl md:border border-slate-200 overflow-hidden flex flex-col mx-auto">
-          
+      <div className="min-h-[100dvh] w-full bg-slate-50 flex flex-col items-center justify-center p-6 overflow-y-auto">
+        <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white relative flex-shrink-0">
+          <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white relative">
             <button 
               onClick={() => setStep('lobby')}
               className="absolute top-6 left-6 p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors backdrop-blur-sm"
@@ -288,11 +287,11 @@ export default function App() {
             </div>
           </div>
 
-          <div className="p-8 space-y-8 flex-grow">
+          <div className="p-8 space-y-8">
             {/* Step 1 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold shrink-0">1</div>
-              <div className="space-y-3 pt-1 w-full">
+              <div className="space-y-3 pt-1">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <Hash className="w-4 h-4 text-indigo-500"/> Room Code
                 </h3>
@@ -303,7 +302,7 @@ export default function App() {
                   </div>
                   <div className="md:border-l border-slate-200 md:pl-4 border-t md:border-t-0 pt-3 md:pt-0">
                     <span className="block font-bold text-xs text-indigo-500 mb-1">KOREAN</span>
-                    선생님과 학생은 동일한 「룸 코드(방 번호)」를 입력합니다. 예: CLASS101
+                    선생님と学生は同一の「ルームコード（部屋番号）」を入力します。例: CLASS101
                   </div>
                 </div>
               </div>
@@ -312,7 +311,7 @@ export default function App() {
             {/* Step 2 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold shrink-0">2</div>
-              <div className="space-y-3 pt-1 w-full">
+              <div className="space-y-3 pt-1">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <Smartphone className="w-4 h-4 text-indigo-500"/> Student (学生 / 학생)
                 </h3>
@@ -323,7 +322,7 @@ export default function App() {
                   </div>
                   <div className="md:border-l border-slate-200 md:pl-4 border-t md:border-t-0 pt-3 md:pt-0">
                     <span className="block font-bold text-xs text-indigo-500 mb-1">KOREAN</span>
-                    'Student'를 선택하고 닉네임을 입력해 참여합니다. 선생님이 문제를 내면 <span className="font-bold text-indigo-600">1~5</span> 선택지 중 하나에 투표하세요.
+                    'Student'を選択し、ニックネームを入力して参加します。先生が問題を出題したら、<span className="font-bold text-indigo-600">1~5</span>의 선택지 중 하나에 투표하세요.
                   </div>
                 </div>
               </div>
@@ -332,7 +331,7 @@ export default function App() {
             {/* Step 3 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 font-bold shrink-0">3</div>
-              <div className="space-y-3 pt-1 w-full">
+              <div className="space-y-3 pt-1">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <School className="w-4 h-4 text-teal-500"/> Teacher (先生 / 선생님)
                 </h3>
@@ -350,7 +349,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="bg-slate-50 p-6 text-center border-t border-slate-100 flex-shrink-0">
+          <div className="bg-slate-50 p-6 text-center border-t border-slate-100">
             <button 
               onClick={() => setStep('lobby')}
               className="px-8 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-900 transition-colors shadow-lg shadow-slate-200"
@@ -360,18 +359,18 @@ export default function App() {
           </div>
 
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide md:block hidden text-center">
+        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">
           Created by Akihiro Suwa (BUFS)
         </footer>
       </div>
     );
   }
   
-  // Lobby Screen (Fixed Layout)
+  // Lobby Screen
   if (step === 'lobby') {
     return (
-      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-0 md:p-6">
-        <div className="bg-white/80 backdrop-blur-xl w-full h-[100dvh] md:h-auto md:max-w-md p-8 md:p-12 md:rounded-3xl md:shadow-2xl md:border border-white/50 flex flex-col justify-center mx-auto">
+      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
+        <div className="bg-white/80 backdrop-blur-xl w-full max-w-md p-8 md:p-12 rounded-3xl shadow-2xl border border-white/50 flex flex-col justify-center">
           <div className="text-center mb-10 relative">
             <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight mb-2">Clicker<span className="text-indigo-600">.io</span></h1>
             <p className="text-slate-500 font-medium">Interactive Classroom System</p>
@@ -421,22 +420,19 @@ export default function App() {
             </div>
           </div>
           
-          <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center md:hidden">
+          <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">
             Created by Akihiro Suwa (BUFS)
           </footer>
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide hidden md:block">
-          Created by Akihiro Suwa (BUFS)
-        </footer>
       </div>
     );
   }
 
-  // Nickname Screen (Fixed Layout)
+  // Nickname Screen
   if (step === 'nickname') {
     return (
-      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-0 md:p-6">
-        <div className="bg-white/80 backdrop-blur-xl w-full h-[100dvh] md:h-auto md:max-w-md p-8 md:rounded-3xl md:shadow-2xl md:border border-white/50 relative overflow-hidden flex flex-col justify-center mx-auto">
+      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
+        <div className="bg-white/80 backdrop-blur-xl w-full max-w-md p-8 rounded-3xl shadow-2xl border border-white/50 relative overflow-hidden flex flex-col justify-center">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-purple-500" />
           
           <div className="text-center mb-8">
@@ -477,13 +473,10 @@ export default function App() {
               Back to Lobby
             </button>
           </div>
-          <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center md:hidden">
+          <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">
             Created by Akihiro Suwa (BUFS)
           </footer>
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide hidden md:block">
-          Created by Akihiro Suwa (BUFS)
-        </footer>
       </div>
     );
   }
@@ -680,8 +673,8 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
   if (role === 'student' && !roomData) {
     return (
-      <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-0 md:p-6 text-center bg-slate-50">
-        <div className="bg-white w-full h-[100dvh] md:h-auto md:p-8 rounded-none md:rounded-3xl shadow-none md:shadow-xl max-w-none md:max-w-sm flex flex-col justify-center p-6 mx-auto">
+      <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-6 text-center bg-slate-50">
+        <div className="bg-white w-full max-w-sm p-8 rounded-3xl shadow-xl flex flex-col justify-center">
           <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
             <School className="w-8 h-8 text-slate-400" />
           </div>
@@ -691,9 +684,8 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
              <p className="text-2xl font-mono font-bold text-indigo-600 tracking-widest">{roomCode}</p>
           </div>
           <button onClick={onLogout} className="mt-8 text-sm font-medium text-slate-400 hover:text-slate-600">Exit Room</button>
-          <footer className="absolute bottom-6 left-0 right-0 text-center text-xs text-slate-300 md:hidden">Created by Akihiro Suwa (BUFS)</footer>
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide hidden md:block">Created by Akihiro Suwa (BUFS)</footer>
+        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">Created by Akihiro Suwa (BUFS)</footer>
       </div>
     );
   }
@@ -823,7 +815,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
       </header>
 
       {/* --- Main Content --- */}
-      <main className="flex-grow p-4 md:p-8 w-full max-w-5xl mx-auto">
+      <main className="flex-grow p-4 md:p-8 w-full max-w-5xl mx-auto flex flex-col items-center">
         
         {/* --- TEACHER DASHBOARD --- */}
         {isTeacher && (
