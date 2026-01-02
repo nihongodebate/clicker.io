@@ -124,7 +124,6 @@ export default function App() {
     const roomRef = doc(db, 'artifacts', appId, 'public', 'data', 'clicker_rooms', formattedCode);
 
     if (isRoomExisting) {
-        // 既存の部屋の場合
         const snap = await getDoc(roomRef);
         const data = snap.data();
 
@@ -146,7 +145,6 @@ export default function App() {
             setAuthError("Wrong Password / パスワードが違います");
         }
     } else {
-        // 新規部屋作成
         try {
             await setDoc(roomRef, {
                 status: 'voting', 
@@ -195,7 +193,7 @@ export default function App() {
 
   if (!user) {
     return (
-      <div className="min-h-[100dvh] flex items-center justify-center bg-slate-50 text-slate-400">
+      <div className="min-h-[100dvh] w-full flex items-center justify-center bg-slate-50 text-slate-400">
         <div className="flex flex-col items-center">
           <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
           <p className="text-sm font-medium tracking-wider animate-pulse">SYSTEM LOADING</p>
@@ -209,8 +207,8 @@ export default function App() {
   // Teacher Auth Modal
   if (showTeacherAuth) {
       return (
-        <div className="min-h-[100dvh] bg-slate-100 flex flex-col items-center justify-center p-6">
-            <div className="bg-white p-8 rounded-3xl shadow-xl w-full max-w-sm border border-slate-200">
+        <div className="min-h-[100dvh] w-full bg-slate-100 flex flex-col md:items-center md:justify-center p-0 md:p-6">
+            <div className="bg-white w-full h-[100dvh] md:h-auto md:max-w-sm p-8 md:rounded-3xl md:shadow-xl md:border md:border-slate-200 flex flex-col justify-center">
                 <div className="text-center mb-6">
                     <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Lock className="w-6 h-6" />
@@ -270,11 +268,11 @@ export default function App() {
   // Guide / Help Screen
   if (step === 'guide') {
     return (
-      <div className="min-h-[100dvh] bg-slate-50 flex flex-col items-center p-6 overflow-y-auto">
-        <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+      <div className="min-h-[100dvh] w-full bg-slate-50 flex flex-col items-center p-0 md:p-6 overflow-y-auto">
+        <div className="w-full md:max-w-2xl min-h-[100dvh] md:min-h-0 bg-white md:rounded-3xl md:shadow-xl md:border border-slate-200 overflow-hidden flex flex-col">
           
           {/* Header */}
-          <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white relative">
+          <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white relative flex-shrink-0">
             <button 
               onClick={() => setStep('lobby')}
               className="absolute top-6 left-6 p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors backdrop-blur-sm"
@@ -290,11 +288,11 @@ export default function App() {
             </div>
           </div>
 
-          <div className="p-8 space-y-8">
-            {/* Step 1: Room Code */}
+          <div className="p-8 space-y-8 flex-grow">
+            {/* Step 1 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold shrink-0">1</div>
-              <div className="space-y-3 pt-1">
+              <div className="space-y-3 pt-1 w-full">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <Hash className="w-4 h-4 text-indigo-500"/> Room Code
                 </h3>
@@ -305,16 +303,16 @@ export default function App() {
                   </div>
                   <div className="md:border-l border-slate-200 md:pl-4 border-t md:border-t-0 pt-3 md:pt-0">
                     <span className="block font-bold text-xs text-indigo-500 mb-1">KOREAN</span>
-                    선생님と学生は同一の「ルームコード（部屋番号）」を入力します。例: CLASS101
+                    선생님과 학생은 동일한 「룸 코드(방 번호)」를 입력합니다. 예: CLASS101
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Step 2: Student */}
+            {/* Step 2 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold shrink-0">2</div>
-              <div className="space-y-3 pt-1">
+              <div className="space-y-3 pt-1 w-full">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <Smartphone className="w-4 h-4 text-indigo-500"/> Student (学生 / 학생)
                 </h3>
@@ -325,16 +323,16 @@ export default function App() {
                   </div>
                   <div className="md:border-l border-slate-200 md:pl-4 border-t md:border-t-0 pt-3 md:pt-0">
                     <span className="block font-bold text-xs text-indigo-500 mb-1">KOREAN</span>
-                    'Student'を選択し、ニックネームを入力して参加します。先生が問題を出題したら、<span className="font-bold text-indigo-600">1~5</span>の選択肢から投票してください。
+                    'Student'를 선택하고 닉네임을 입력해 참여합니다. 선생님이 문제를 내면 <span className="font-bold text-indigo-600">1~5</span> 선택지 중 하나에 투표하세요.
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Step 3: Teacher */}
+            {/* Step 3 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 font-bold shrink-0">3</div>
-              <div className="space-y-3 pt-1">
+              <div className="space-y-3 pt-1 w-full">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <School className="w-4 h-4 text-teal-500"/> Teacher (先生 / 선생님)
                 </h3>
@@ -345,15 +343,14 @@ export default function App() {
                   </div>
                   <div className="md:border-l border-slate-200 md:pl-4 border-t md:border-t-0 pt-3 md:pt-0">
                     <span className="block font-bold text-xs text-indigo-500 mb-1">KOREAN</span>
-                    'Teacher'を選択して部屋を作成します。リアルタイムで集計結果を確認・公開したり、次の問題へ進むことができます。
+                    'Teacher'를 선택해 방을 만듭니다. 실시간으로 집계 결과를 확인 및 공개하거나, 다음 문제로 진행할 수 있습니다.
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
 
-          <div className="bg-slate-50 p-6 text-center border-t border-slate-100">
+          <div className="bg-slate-50 p-6 text-center border-t border-slate-100 flex-shrink-0">
             <button 
               onClick={() => setStep('lobby')}
               className="px-8 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-900 transition-colors shadow-lg shadow-slate-200"
@@ -363,18 +360,18 @@ export default function App() {
           </div>
 
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide">
+        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide md:block hidden">
           Created by Akihiro Suwa (BUFS)
         </footer>
       </div>
     );
   }
   
-  // Lobby Screen
+  // Lobby Screen (Fixed for Mobile Fullscreen)
   if (step === 'lobby') {
     return (
-      <div className="min-h-[100dvh] bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
-        <div className="bg-white/80 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl w-full max-w-md border border-white/50">
+      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col md:items-center md:justify-center p-0 md:p-6">
+        <div className="bg-white/80 backdrop-blur-xl w-full h-[100dvh] md:h-auto md:max-w-md p-8 md:p-12 md:rounded-3xl md:shadow-2xl md:border border-white/50 flex flex-col justify-center">
           <div className="text-center mb-10 relative">
             <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight mb-2">Clicker<span className="text-indigo-600">.io</span></h1>
             <p className="text-slate-500 font-medium">Interactive Classroom System</p>
@@ -423,19 +420,23 @@ export default function App() {
               </button>
             </div>
           </div>
+          
+          <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center md:hidden">
+            Created by Akihiro Suwa (BUFS)
+          </footer>
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide">
+        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide hidden md:block">
           Created by Akihiro Suwa (BUFS)
         </footer>
       </div>
     );
   }
 
-  // Nickname Screen
+  // Nickname Screen (Fixed for Mobile Fullscreen)
   if (step === 'nickname') {
     return (
-      <div className="min-h-[100dvh] bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
-        <div className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-2xl w-full max-w-md border border-white/50 relative overflow-hidden">
+      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col md:items-center md:justify-center p-0 md:p-6">
+        <div className="bg-white/80 backdrop-blur-xl w-full h-[100dvh] md:h-auto md:max-w-md p-8 md:rounded-3xl md:shadow-2xl md:border border-white/50 relative overflow-hidden flex flex-col justify-center">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-purple-500" />
           
           <div className="text-center mb-8">
@@ -476,8 +477,11 @@ export default function App() {
               Back to Lobby
             </button>
           </div>
+          <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center md:hidden">
+            Created by Akihiro Suwa (BUFS)
+          </footer>
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide">
+        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide hidden md:block">
           Created by Akihiro Suwa (BUFS)
         </footer>
       </div>
@@ -676,8 +680,8 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
   if (role === 'student' && !roomData) {
     return (
-      <div className="min-h-[100dvh] bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
-        <div className="bg-white p-8 rounded-3xl shadow-xl max-w-sm w-full">
+      <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-0 md:p-6 text-center">
+        <div className="bg-white w-full h-[100dvh] md:h-auto md:p-8 rounded-none md:rounded-3xl shadow-none md:shadow-xl max-w-none md:max-w-sm flex flex-col justify-center p-6">
           <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
             <School className="w-8 h-8 text-slate-400" />
           </div>
@@ -687,15 +691,16 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
              <p className="text-2xl font-mono font-bold text-indigo-600 tracking-widest">{roomCode}</p>
           </div>
           <button onClick={onLogout} className="mt-8 text-sm font-medium text-slate-400 hover:text-slate-600">Exit Room</button>
+          <footer className="absolute bottom-6 left-0 right-0 text-center text-xs text-slate-300 md:hidden">Created by Akihiro Suwa (BUFS)</footer>
         </div>
-        <footer className="absolute bottom-6 text-xs text-slate-300">Created by Akihiro Suwa (BUFS)</footer>
+        <footer className="absolute bottom-6 text-xs text-slate-300 hidden md:block">Created by Akihiro Suwa (BUFS)</footer>
       </div>
     );
   }
 
   if (role === 'teacher' && !roomData) {
      return (
-       <div className="min-h-[100dvh] bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
+       <div className="min-h-[100dvh] flex flex-col items-center justify-center p-6 text-center">
          <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mb-4"></div>
          <h2 className="text-lg font-bold text-slate-700">Creating Room...</h2>
        </div>
