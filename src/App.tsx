@@ -45,15 +45,14 @@ import {
 // =================================================================
 
 const firebaseConfig = {
-  // ↓↓↓ ここをあなたのコードに書き換えてください ↓↓↓
-  apiKey: "AIzaSyDxxxxxxxxxxxxxxxxxxxxxx",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "1234567890",
-  appId: "1:1234567890:web:xxxxxxxxxxxx"
-  // ↑↑↑ ここまで ↑↑↑
-};
+    apiKey: "AIzaSyDlJXT3yxqitpF1FMD4BxODt_ftZKmfbS4",
+    authDomain: "clicker-24540.firebaseapp.com",
+    projectId: "clicker-24540",
+    storageBucket: "clicker-24540.firebasestorage.app",
+    messagingSenderId: "781897808192",
+    appId: "1:781897808192:web:4a074430df56584efea2a5",
+    measurementId: "G-6QDVWL54X9"
+  }
 
 // アプリの初期化
 const app = initializeApp(firebaseConfig);
