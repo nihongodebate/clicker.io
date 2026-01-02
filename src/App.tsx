@@ -207,8 +207,8 @@ export default function App() {
   // Teacher Auth Modal
   if (showTeacherAuth) {
       return (
-        <div className="min-h-[100dvh] w-full bg-slate-100 flex flex-col md:items-center md:justify-center p-0 md:p-6">
-            <div className="bg-white w-full h-[100dvh] md:h-auto md:max-w-sm p-8 md:rounded-3xl md:shadow-xl md:border md:border-slate-200 flex flex-col justify-center">
+        <div className="min-h-[100dvh] w-full bg-slate-100 flex flex-col items-center justify-center p-0 md:p-6">
+            <div className="bg-white w-full h-full md:h-auto md:max-w-sm p-8 md:rounded-3xl md:shadow-xl md:border md:border-slate-200 flex flex-col justify-center mx-auto">
                 <div className="text-center mb-6">
                     <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Lock className="w-6 h-6" />
@@ -269,7 +269,7 @@ export default function App() {
   if (step === 'guide') {
     return (
       <div className="min-h-[100dvh] w-full bg-slate-50 flex flex-col items-center p-0 md:p-6 overflow-y-auto">
-        <div className="w-full md:max-w-2xl min-h-[100dvh] md:min-h-0 bg-white md:rounded-3xl md:shadow-xl md:border border-slate-200 overflow-hidden flex flex-col">
+        <div className="w-full md:max-w-2xl min-h-[100dvh] md:min-h-0 bg-white md:rounded-3xl md:shadow-xl md:border border-slate-200 overflow-hidden flex flex-col mx-auto">
           
           {/* Header */}
           <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white relative flex-shrink-0">
@@ -360,18 +360,18 @@ export default function App() {
           </div>
 
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide md:block hidden">
+        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide md:block hidden text-center">
           Created by Akihiro Suwa (BUFS)
         </footer>
       </div>
     );
   }
   
-  // Lobby Screen (Fixed for Mobile Fullscreen)
+  // Lobby Screen (Fixed Layout)
   if (step === 'lobby') {
     return (
-      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col md:items-center md:justify-center p-0 md:p-6">
-        <div className="bg-white/80 backdrop-blur-xl w-full h-[100dvh] md:h-auto md:max-w-md p-8 md:p-12 md:rounded-3xl md:shadow-2xl md:border border-white/50 flex flex-col justify-center">
+      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-0 md:p-6">
+        <div className="bg-white/80 backdrop-blur-xl w-full h-[100dvh] md:h-auto md:max-w-md p-8 md:p-12 md:rounded-3xl md:shadow-2xl md:border border-white/50 flex flex-col justify-center mx-auto">
           <div className="text-center mb-10 relative">
             <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight mb-2">Clicker<span className="text-indigo-600">.io</span></h1>
             <p className="text-slate-500 font-medium">Interactive Classroom System</p>
@@ -432,11 +432,11 @@ export default function App() {
     );
   }
 
-  // Nickname Screen (Fixed for Mobile Fullscreen)
+  // Nickname Screen (Fixed Layout)
   if (step === 'nickname') {
     return (
-      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col md:items-center md:justify-center p-0 md:p-6">
-        <div className="bg-white/80 backdrop-blur-xl w-full h-[100dvh] md:h-auto md:max-w-md p-8 md:rounded-3xl md:shadow-2xl md:border border-white/50 relative overflow-hidden flex flex-col justify-center">
+      <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-0 md:p-6">
+        <div className="bg-white/80 backdrop-blur-xl w-full h-[100dvh] md:h-auto md:max-w-md p-8 md:rounded-3xl md:shadow-2xl md:border border-white/50 relative overflow-hidden flex flex-col justify-center mx-auto">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-purple-500" />
           
           <div className="text-center mb-8">
@@ -673,15 +673,15 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
   }, [roomData]);
 
   if (loading) return (
-    <div className="min-h-[100dvh] flex items-center justify-center bg-slate-50 text-slate-400">
+    <div className="min-h-[100dvh] w-full flex items-center justify-center bg-slate-50 text-slate-400">
       <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 
   if (role === 'student' && !roomData) {
     return (
-      <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-0 md:p-6 text-center">
-        <div className="bg-white w-full h-[100dvh] md:h-auto md:p-8 rounded-none md:rounded-3xl shadow-none md:shadow-xl max-w-none md:max-w-sm flex flex-col justify-center p-6">
+      <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-0 md:p-6 text-center bg-slate-50">
+        <div className="bg-white w-full h-[100dvh] md:h-auto md:p-8 rounded-none md:rounded-3xl shadow-none md:shadow-xl max-w-none md:max-w-sm flex flex-col justify-center p-6 mx-auto">
           <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
             <School className="w-8 h-8 text-slate-400" />
           </div>
@@ -693,14 +693,14 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
           <button onClick={onLogout} className="mt-8 text-sm font-medium text-slate-400 hover:text-slate-600">Exit Room</button>
           <footer className="absolute bottom-6 left-0 right-0 text-center text-xs text-slate-300 md:hidden">Created by Akihiro Suwa (BUFS)</footer>
         </div>
-        <footer className="absolute bottom-6 text-xs text-slate-300 hidden md:block">Created by Akihiro Suwa (BUFS)</footer>
+        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide hidden md:block">Created by Akihiro Suwa (BUFS)</footer>
       </div>
     );
   }
 
   if (role === 'teacher' && !roomData) {
      return (
-       <div className="min-h-[100dvh] flex flex-col items-center justify-center p-6 text-center">
+       <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-6 text-center bg-slate-50">
          <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mb-4"></div>
          <h2 className="text-lg font-bold text-slate-700">Creating Room...</h2>
        </div>
@@ -717,11 +717,11 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
   const gradientClass = isTeacher ? 'from-teal-600 to-emerald-600' : 'from-indigo-600 to-purple-600';
 
   return (
-    <div className="min-h-[100dvh] bg-slate-50 flex flex-col font-sans text-slate-800">
+    <div className="min-h-[100dvh] w-full bg-slate-50 flex flex-col font-sans text-slate-800">
       
       {/* --- CONFIRMATION MODALS --- */}
       {showNextConfirm && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4 w-full">
           <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full animate-in zoom-in-95 duration-200">
             <h3 className="text-lg font-bold text-slate-800 mb-2">Next Question?</h3>
             <p className="text-slate-500 text-sm mb-6">Current votes will be archived and the question number will advance to {currentQ + 1}.</p>
@@ -734,7 +734,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
       )}
 
       {showResetConfirm && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4 w-full">
           <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full animate-in zoom-in-95 duration-200">
             <div className="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center mb-4">
               <RefreshCw className="w-6 h-6" />
@@ -751,7 +751,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
       {/* --- EDIT QUESTION MODAL --- */}
       {isEditingQ && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4 w-full">
           <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-xs w-full animate-in zoom-in-95 duration-200">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-bold text-slate-800">Jump to Question</h3>
@@ -774,7 +774,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
 
       {/* --- Stylish Header --- */}
-      <header className={`bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50`}>
+      <header className={`bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 w-full`}>
         <div className="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-4 overflow-hidden">
             <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${gradientClass} flex items-center justify-center text-white shadow-lg shadow-${themeColor}-500/20 flex-shrink-0`}>
@@ -827,7 +827,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
         
         {/* --- TEACHER DASHBOARD --- */}
         {isTeacher && (
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 w-full">
             {/* Stats Card */}
             <div className="md:col-span-8 bg-white p-6 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col justify-between">
               <div className="flex justify-between items-start mb-6">
@@ -937,7 +937,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
         {/* --- RESULTS GRAPH --- */}
         {(isTeacher || (isRevealed && roomData.status === 'revealed')) && (
-          <div className="bg-white p-6 md:p-10 rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100 animate-in fade-in slide-in-from-bottom-8 duration-700">
+          <div className="bg-white p-6 md:p-10 rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100 animate-in fade-in slide-in-from-bottom-8 duration-700 w-full">
             <div className="flex items-center justify-between mb-10">
               <div className="flex items-center gap-3">
                 <div className={`p-3 rounded-2xl ${isTeacher ? 'bg-teal-50 text-teal-600' : 'bg-indigo-50 text-indigo-600'}`}>
