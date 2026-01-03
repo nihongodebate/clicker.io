@@ -41,18 +41,19 @@ import {
 } from 'lucide-react';
 
 // =================================================================
-// 【重要】ここでプレビューする場合も、キーの書き換えが必要です！
+// 【重要】GitHubで編集する際も、ここをご自身のキーに書き換えてください！
 // =================================================================
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDlJXT3yxqitpF1FMD4BxODt_ftZKmfbS4",
-    authDomain: "clicker-24540.firebaseapp.com",
-    projectId: "clicker-24540",
-    storageBucket: "clicker-24540.firebasestorage.app",
-    messagingSenderId: "781897808192",
-    appId: "1:781897808192:web:4a074430df56584efea2a5",
-    measurementId: "G-6QDVWL54X9"
-  }
+  // ↓↓↓ ここをあなたのコードに書き換えてください ↓↓↓
+  apiKey: "AIzaSyDxxxxxxxxxxxxxxxxxxxxxx",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "1234567890",
+  appId: "1:1234567890:web:xxxxxxxxxxxx"
+  // ↑↑↑ ここまで ↑↑↑
+};
 
 // アプリの初期化
 const app = initializeApp(firebaseConfig);
@@ -208,57 +209,59 @@ export default function App() {
   if (showTeacherAuth) {
       return (
         <div className="min-h-[100dvh] w-full bg-slate-100 flex flex-col items-center justify-center p-6">
-            <div className="bg-white w-full max-w-sm p-8 rounded-3xl shadow-xl border border-slate-200">
-                <div className="text-center mb-6">
-                    <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Lock className="w-6 h-6" />
-                    </div>
-                    <h2 className="text-xl font-bold text-slate-800">
-                        {isRoomExisting ? "Teacher Login" : "Create Class Room"}
-                    </h2>
-                    <p className="text-sm text-slate-500 mt-2">
-                        {isRoomExisting 
-                            ? "Enter the room password to manage." 
-                            : "Set a password for this new room."}
-                    </p>
-                </div>
-
-                <div className="space-y-4">
-                    <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Room Code</label>
-                        <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono font-bold text-center text-lg text-slate-700">
-                            {roomCode}
+            <div className="w-full max-w-sm mx-auto">
+                <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200 w-full">
+                    <div className="text-center mb-6">
+                        <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Lock className="w-6 h-6" />
                         </div>
+                        <h2 className="text-xl font-bold text-slate-800">
+                            {isRoomExisting ? "Teacher Login" : "Create Class Room"}
+                        </h2>
+                        <p className="text-sm text-slate-500 mt-2">
+                            {isRoomExisting 
+                                ? "Enter the room password to manage." 
+                                : "Set a password for this new room."}
+                        </p>
                     </div>
 
-                    <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">
-                            {isRoomExisting ? "Password" : "Set Password"}
-                        </label>
-                        <input 
-                            type="password"
-                            value={teacherPassword}
-                            onChange={(e) => setTeacherPassword(e.target.value)}
-                            placeholder="****"
-                            className="w-full p-3 border-2 border-slate-200 rounded-xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all font-bold text-center text-lg text-slate-800"
-                            autoFocus
-                        />
-                        {authError && <p className="text-red-500 text-xs font-bold mt-2 text-center">{authError}</p>}
-                    </div>
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Room Code</label>
+                            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono font-bold text-center text-lg text-slate-700">
+                                {roomCode}
+                            </div>
+                        </div>
 
-                    <button
-                        onClick={submitTeacherAuth}
-                        className="w-full py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 shadow-lg shadow-teal-500/30 transition-all"
-                    >
-                        {isRoomExisting ? "Login" : "Create & Enter"}
-                    </button>
-                    
-                    <button 
-                        onClick={() => setShowTeacherAuth(false)}
-                        className="w-full py-2 text-slate-400 font-bold text-sm hover:text-slate-600"
-                    >
-                        Cancel
-                    </button>
+                        <div>
+                            <label className="block text-xs font-bold text-slate-500 uppercase mb-1">
+                                {isRoomExisting ? "Password" : "Set Password"}
+                            </label>
+                            <input 
+                                type="password"
+                                value={teacherPassword}
+                                onChange={(e) => setTeacherPassword(e.target.value)}
+                                placeholder="****"
+                                className="w-full p-3 border-2 border-slate-200 rounded-xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all font-bold text-center text-lg text-slate-800"
+                                autoFocus
+                            />
+                            {authError && <p className="text-red-500 text-xs font-bold mt-2 text-center">{authError}</p>}
+                        </div>
+
+                        <button
+                            onClick={submitTeacherAuth}
+                            className="w-full py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 shadow-lg shadow-teal-500/30 transition-all"
+                        >
+                            {isRoomExisting ? "Login" : "Create & Enter"}
+                        </button>
+                        
+                        <button 
+                            onClick={() => setShowTeacherAuth(false)}
+                            className="w-full py-2 text-slate-400 font-bold text-sm hover:text-slate-600"
+                        >
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -268,8 +271,8 @@ export default function App() {
   // Guide / Help Screen
   if (step === 'guide') {
     return (
-      <div className="min-h-[100dvh] w-full bg-slate-50 flex flex-col items-center justify-center p-6 overflow-y-auto">
-        <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+      <div className="min-h-[100dvh] w-full bg-slate-50 flex flex-col items-center justify-center p-4 overflow-y-auto">
+        <div className="w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white relative">
             <button 
@@ -291,7 +294,7 @@ export default function App() {
             {/* Step 1 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold shrink-0">1</div>
-              <div className="space-y-3 pt-1">
+              <div className="space-y-3 pt-1 w-full">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <Hash className="w-4 h-4 text-indigo-500"/> Room Code
                 </h3>
@@ -302,7 +305,7 @@ export default function App() {
                   </div>
                   <div className="md:border-l border-slate-200 md:pl-4 border-t md:border-t-0 pt-3 md:pt-0">
                     <span className="block font-bold text-xs text-indigo-500 mb-1">KOREAN</span>
-                    선생님と学生は同一の「ルームコード（部屋番号）」を入力します。例: CLASS101
+                    선생님과 학생은 동일한 「룸 코드(방 번호)」를 입력합니다. 예: CLASS101
                   </div>
                 </div>
               </div>
@@ -311,7 +314,7 @@ export default function App() {
             {/* Step 2 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold shrink-0">2</div>
-              <div className="space-y-3 pt-1">
+              <div className="space-y-3 pt-1 w-full">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <Smartphone className="w-4 h-4 text-indigo-500"/> Student (学生 / 학생)
                 </h3>
@@ -322,7 +325,7 @@ export default function App() {
                   </div>
                   <div className="md:border-l border-slate-200 md:pl-4 border-t md:border-t-0 pt-3 md:pt-0">
                     <span className="block font-bold text-xs text-indigo-500 mb-1">KOREAN</span>
-                    'Student'を選択し、ニックネームを入力して参加します。先生が問題を出題したら、<span className="font-bold text-indigo-600">1~5</span>의 선택지 중 하나에 투표하세요.
+                    'Student'를 선택하고 닉네임을 입력해 참여합니다. 선생님이 문제를 내면 <span className="font-bold text-indigo-600">1~5</span>의 선택지 중 하나에 투표하세요.
                   </div>
                 </div>
               </div>
@@ -331,7 +334,7 @@ export default function App() {
             {/* Step 3 */}
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 font-bold shrink-0">3</div>
-              <div className="space-y-3 pt-1">
+              <div className="space-y-3 pt-1 w-full">
                 <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                   <School className="w-4 h-4 text-teal-500"/> Teacher (先生 / 선생님)
                 </h3>
@@ -370,59 +373,60 @@ export default function App() {
   if (step === 'lobby') {
     return (
       <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
-        <div className="bg-white/80 backdrop-blur-xl w-full max-w-md p-8 md:p-12 rounded-3xl shadow-2xl border border-white/50 flex flex-col justify-center">
-          <div className="text-center mb-10 relative">
-            <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight mb-2">Clicker<span className="text-indigo-600">.io</span></h1>
-            <p className="text-slate-500 font-medium">Interactive Classroom System</p>
-            
-            {/* Guide Button */}
-            <button 
-              onClick={() => setStep('guide')}
-              className="absolute top-0 right-0 md:-right-4 md:-top-4 p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-full transition-all"
-              title="How to use / 사용법"
-            >
-              <HelpCircle className="w-6 h-6" />
-            </button>
-          </div>
+        <div className="w-full max-w-md mx-auto">
+            <div className="bg-white/80 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl border border-white/50">
+                <div className="text-center mb-10 relative">
+                    <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight mb-2">Clicker<span className="text-indigo-600">.io</span></h1>
+                    <p className="text-slate-500 font-medium">Interactive Classroom System</p>
+                    
+                    {/* Guide Button */}
+                    <button 
+                    onClick={() => setStep('guide')}
+                    className="absolute top-0 right-0 md:-right-4 md:-top-4 p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-full transition-all"
+                    title="How to use / 사용법"
+                    >
+                    <HelpCircle className="w-6 h-6" />
+                    </button>
+                </div>
 
-          <div className="space-y-6">
-            <div className="relative group">
-              <Hash className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
-              <input
-                type="text"
-                value={roomCode}
-                onChange={(e) => setRoomCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))}
-                placeholder="ROOM CODE"
-                className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none text-xl font-bold tracking-widest text-center uppercase transition-all text-slate-800"
-              />
+                <div className="space-y-6">
+                    <div className="relative group">
+                    <Hash className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
+                    <input
+                        type="text"
+                        value={roomCode}
+                        onChange={(e) => setRoomCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))}
+                        placeholder="ROOM CODE"
+                        className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none text-xl font-bold tracking-widest text-center uppercase transition-all text-slate-800"
+                    />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 pt-4">
+                    <button
+                        onClick={() => handleRoleSelect('student')}
+                        disabled={!roomCode}
+                        className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-slate-200 rounded-2xl hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1 transition-all disabled:opacity-50 disabled:hover:translate-y-0"
+                    >
+                        <div className="absolute inset-0 bg-indigo-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Smartphone className="w-8 h-8 text-slate-600 group-hover:text-indigo-600 mb-3 relative z-10 transition-colors" />
+                        <span className="font-bold text-slate-700 group-hover:text-indigo-700 relative z-10">Student</span>
+                    </button>
+
+                    <button
+                        onClick={handleTeacherClick} 
+                        disabled={!roomCode}
+                        className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-slate-200 rounded-2xl hover:border-teal-500 hover:shadow-lg hover:-translate-y-1 transition-all disabled:opacity-50 disabled:hover:translate-y-0"
+                    >
+                        <div className="absolute inset-0 bg-teal-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <School className="w-8 h-8 text-slate-600 group-hover:text-teal-600 mb-3 relative z-10 transition-colors" />
+                        <span className="font-bold text-slate-700 group-hover:text-teal-700 relative z-10">Teacher</span>
+                    </button>
+                    </div>
+                </div>
             </div>
-
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <button
-                onClick={() => handleRoleSelect('student')}
-                disabled={!roomCode}
-                className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-slate-200 rounded-2xl hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1 transition-all disabled:opacity-50 disabled:hover:translate-y-0"
-              >
-                <div className="absolute inset-0 bg-indigo-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <Smartphone className="w-8 h-8 text-slate-600 group-hover:text-indigo-600 mb-3 relative z-10 transition-colors" />
-                <span className="font-bold text-slate-700 group-hover:text-indigo-700 relative z-10">Student</span>
-              </button>
-
-              <button
-                onClick={handleTeacherClick} 
-                disabled={!roomCode}
-                className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-slate-200 rounded-2xl hover:border-teal-500 hover:shadow-lg hover:-translate-y-1 transition-all disabled:opacity-50 disabled:hover:translate-y-0"
-              >
-                <div className="absolute inset-0 bg-teal-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <School className="w-8 h-8 text-slate-600 group-hover:text-teal-600 mb-3 relative z-10 transition-colors" />
-                <span className="font-bold text-slate-700 group-hover:text-teal-700 relative z-10">Teacher</span>
-              </button>
-            </div>
-          </div>
-          
-          <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">
+            <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">
             Created by Akihiro Suwa (BUFS)
-          </footer>
+            </footer>
         </div>
       </div>
     );
@@ -432,50 +436,52 @@ export default function App() {
   if (step === 'nickname') {
     return (
       <div className="min-h-[100dvh] w-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-6">
-        <div className="bg-white/80 backdrop-blur-xl w-full max-w-md p-8 rounded-3xl shadow-2xl border border-white/50 relative overflow-hidden flex flex-col justify-center">
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-purple-500" />
-          
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-slate-800">Who are you?</h2>
-            <p className="text-slate-500 text-sm mt-1">Please enter your display name</p>
-          </div>
-          
-          <div className="space-y-4">
-            <div className="relative group">
-              <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
-              <input
-                type="text"
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
-                placeholder="Nickname"
-                className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none text-lg font-medium transition-all text-slate-800"
-                autoFocus
-                onKeyDown={(e) => e.key === 'Enter' && nickname.trim() && handleJoinRoom()}
-              />
-            </div>
+        <div className="w-full max-w-md mx-auto">
+            <div className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/50 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-purple-500" />
+                
+                <div className="text-center mb-8">
+                    <h2 className="text-2xl font-bold text-slate-800">Who are you?</h2>
+                    <p className="text-slate-500 text-sm mt-1">Please enter your display name</p>
+                </div>
+                
+                <div className="space-y-4">
+                    <div className="relative group">
+                    <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
+                    <input
+                        type="text"
+                        value={nickname}
+                        onChange={(e) => setNickname(e.target.value)}
+                        placeholder="Nickname"
+                        className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none text-lg font-medium transition-all text-slate-800"
+                        autoFocus
+                        onKeyDown={(e) => e.key === 'Enter' && nickname.trim() && handleJoinRoom()}
+                    />
+                    </div>
 
-            <button
-              onClick={handleJoinRoom}
-              disabled={!nickname.trim()}
-              className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:hover:scale-100"
-            >
-              Join Room
-            </button>
-            
-            <button 
-              onClick={() => {
-                setStep('lobby');
-                localStorage.removeItem('clicker_role');
-                localStorage.removeItem('clicker_roomCode');
-              }}
-              className="w-full py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors"
-            >
-              Back to Lobby
-            </button>
-          </div>
-          <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">
-            Created by Akihiro Suwa (BUFS)
-          </footer>
+                    <button
+                    onClick={handleJoinRoom}
+                    disabled={!nickname.trim()}
+                    className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:hover:scale-100"
+                    >
+                    Join Room
+                    </button>
+                    
+                    <button 
+                    onClick={() => {
+                        setStep('lobby');
+                        localStorage.removeItem('clicker_role');
+                        localStorage.removeItem('clicker_roomCode');
+                    }}
+                    className="w-full py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors"
+                    >
+                    Back to Lobby
+                    </button>
+                </div>
+            </div>
+            <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">
+                Created by Akihiro Suwa (BUFS)
+            </footer>
         </div>
       </div>
     );
@@ -674,18 +680,20 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
   if (role === 'student' && !roomData) {
     return (
       <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-6 text-center bg-slate-50">
-        <div className="bg-white w-full max-w-sm p-8 rounded-3xl shadow-xl flex flex-col justify-center">
-          <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-            <School className="w-8 h-8 text-slate-400" />
-          </div>
-          <h2 className="text-xl font-bold text-slate-800">Waiting for Teacher</h2>
-          <div className="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-100">
-             <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Room Code</p>
-             <p className="text-2xl font-mono font-bold text-indigo-600 tracking-widest">{roomCode}</p>
-          </div>
-          <button onClick={onLogout} className="mt-8 text-sm font-medium text-slate-400 hover:text-slate-600">Exit Room</button>
+        <div className="w-full max-w-sm mx-auto">
+            <div className="bg-white p-8 rounded-3xl shadow-xl flex flex-col justify-center">
+            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                <School className="w-8 h-8 text-slate-400" />
+            </div>
+            <h2 className="text-xl font-bold text-slate-800">Waiting for Teacher</h2>
+            <div className="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Room Code</p>
+                <p className="text-2xl font-mono font-bold text-indigo-600 tracking-widest">{roomCode}</p>
+            </div>
+            <button onClick={onLogout} className="mt-8 text-sm font-medium text-slate-400 hover:text-slate-600">Exit Room</button>
+            </div>
+            <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">Created by Akihiro Suwa (BUFS)</footer>
         </div>
-        <footer className="mt-8 text-xs font-medium text-slate-400 tracking-wide text-center">Created by Akihiro Suwa (BUFS)</footer>
       </div>
     );
   }
@@ -714,7 +722,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
       {/* --- CONFIRMATION MODALS --- */}
       {showNextConfirm && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4 w-full">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full animate-in zoom-in-95 duration-200">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full animate-in zoom-in-95 duration-200 mx-auto">
             <h3 className="text-lg font-bold text-slate-800 mb-2">Next Question?</h3>
             <p className="text-slate-500 text-sm mb-6">Current votes will be archived and the question number will advance to {currentQ + 1}.</p>
             <div className="flex gap-3">
@@ -727,7 +735,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
       {showResetConfirm && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4 w-full">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full animate-in zoom-in-95 duration-200">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full animate-in zoom-in-95 duration-200 mx-auto">
             <div className="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center mb-4">
               <RefreshCw className="w-6 h-6" />
             </div>
@@ -744,7 +752,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
       {/* --- EDIT QUESTION MODAL --- */}
       {isEditingQ && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4 w-full">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-xs w-full animate-in zoom-in-95 duration-200">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-xs w-full animate-in zoom-in-95 duration-200 mx-auto">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-bold text-slate-800">Jump to Question</h3>
               <button onClick={() => setIsEditingQ(false)} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5"/></button>
@@ -819,7 +827,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
         
         {/* --- TEACHER DASHBOARD --- */}
         {isTeacher && (
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 w-full max-w-5xl mx-auto">
             {/* Stats Card */}
             <div className="md:col-span-8 bg-white p-6 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col justify-between">
               <div className="flex justify-between items-start mb-6">
@@ -929,7 +937,7 @@ function Room({ user, roomCode, role, nickname, onLogout, db, appId }) {
 
         {/* --- RESULTS GRAPH --- */}
         {(isTeacher || (isRevealed && roomData.status === 'revealed')) && (
-          <div className="bg-white p-6 md:p-10 rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100 animate-in fade-in slide-in-from-bottom-8 duration-700 w-full">
+          <div className="bg-white p-6 md:p-10 rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100 animate-in fade-in slide-in-from-bottom-8 duration-700 w-full max-w-5xl mx-auto">
             <div className="flex items-center justify-between mb-10">
               <div className="flex items-center gap-3">
                 <div className={`p-3 rounded-2xl ${isTeacher ? 'bg-teal-50 text-teal-600' : 'bg-indigo-50 text-indigo-600'}`}>
